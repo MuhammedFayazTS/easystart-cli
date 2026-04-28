@@ -1,14 +1,23 @@
 import { loadConfig } from "../core/config-loader";
 import { createNameVariants } from "../core/name-utils";
+import { renderTemplate } from "../core/template-engine";
 
 export function featureCommand(inputName: string): void {
   console.log("Creating feature:", inputName);
 
   const config = loadConfig();
-
-  console.log("config:", config);
-
   const names = createNameVariants(inputName);
 
-  console.log("Name variants:", names);
+  const variables = {
+    name: names.name,
+    Name: names.Name,
+  };
+
+  const output = renderTemplate(
+    "templates/controller.hbs",
+    variables
+  );
+
+  console.log("\nGenerated Template:\n");
+  console.log(output);
 }
