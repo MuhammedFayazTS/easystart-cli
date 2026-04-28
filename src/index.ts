@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const { Command } = require("commander");
-const featureCommand = require("./src/commands/feature");
+import { Command } from "commander";
+import { featureCommand } from "./commands/feature";
 
 const program = new Command();
 
