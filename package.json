@@ -1,21 +1,18 @@
 {
-  "name": "express-feature-cli",
+  "name": "@fayaz_builds/easystart-cli",
   "version": "1.0.0",
-  "description": "",
+  "description": "CLI to generate feature-based structure for Express apps",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
     "dev": "ts-node src/index.ts"
   },
   "bin": {
-    "feature-cli": "./dist/index.js"
+    "easystart-cli": "dist/index.js"
   },
   "files": [
     "dist"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "type": "commonjs",
   "dependencies": {
     "boxen": "^8.0.1",
@@ -26,5 +23,13 @@
     "@types/node": "^25.6.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
-  }
+  },
+  "keywords": [
+    "cli",
+    "express",
+    "generator",
+    "scaffold"
+  ],
+  "author": "Fayaz",
+  "license": "MIT"
 }
