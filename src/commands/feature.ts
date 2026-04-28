@@ -1,4 +1,5 @@
 import { loadConfig } from "../core/config-loader";
+import { writeFiles } from "../core/file-writer";
 import { generateFiles } from "../core/generator";
 import { createNameVariants } from "../core/name-utils";
 
@@ -10,11 +11,5 @@ export function featureCommand(inputName: string): void {
 
   const files = generateFiles(config, names);
 
-  console.log("\nGenerated Files:\n");
-
-  for (const file of files) {
-    console.log("Path:", file.filePath);
-    console.log(file.content);
-    console.log("----------");
-  }
+  writeFiles(files);
 }
