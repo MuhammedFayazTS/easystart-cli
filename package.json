@@ -1,6 +1,6 @@
 {
   "name": "@fayaz_builds/easystart-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to generate feature-based structure for Express apps",
   "scripts": {
     "build": "tsc",
@@ -11,7 +11,9 @@
     "easystart-cli": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "assets"
   ],
   "type": "commonjs",
   "dependencies": {
@@ -23,6 +25,14 @@
     "@types/node": "^25.6.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
+  },
+  "homepage": "https://github.com/MuhammedFayazTS/easystart-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MuhammedFayazTS/easystart-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MuhammedFayazTS/easystart-cli/issues"
   },
   "keywords": [
     "cli",
