@@ -1,27 +1,31 @@
 import fs from "fs";
 import path from "path";
 import { GeneratedFile } from "./generator";
+import { logger } from "./logger";
 
 export function writeFiles(files: GeneratedFile[]): void {
+    let created = 0;
+    let skipped = 0;
+
     for (const file of files) {
         const fullPath = path.resolve(process.cwd(), file.filePath);
-
-        // Ensure directory exists
         const dir = path.dirname(fullPath);
 
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true });
         }
 
-        // Prevent overwrite (basic safety)
         if (fs.existsSync(fullPath)) {
-            console.warn(`Skipping (already exists): ${file.filePath}`);
+            logger.warn(`Skipped (exists): ${file.filePath}`);
+            skipped++;
             continue;
         }
 
-        // Write file
         fs.writeFileSync(fullPath, file.content, "utf-8");
 
-        console.log(`Created: ${file.filePath}`);
+        logger.success(`Created: ${file.filePath}`);
+        created++;
     }
+
+    logger.box(`Summary: ${created} created, ${skipped} skipped`);
 }
