@@ -1,6 +1,6 @@
 import { loadConfig } from "../core/config-loader";
+import { generateFiles } from "../core/generator";
 import { createNameVariants } from "../core/name-utils";
-import { renderTemplate } from "../core/template-engine";
 
 export function featureCommand(inputName: string): void {
   console.log("Creating feature:", inputName);
@@ -8,16 +8,13 @@ export function featureCommand(inputName: string): void {
   const config = loadConfig();
   const names = createNameVariants(inputName);
 
-  const variables = {
-    name: names.name,
-    Name: names.Name,
-  };
+  const files = generateFiles(config, names);
 
-  const output = renderTemplate(
-    "templates/controller.hbs",
-    variables
-  );
+  console.log("\nGenerated Files:\n");
 
-  console.log("\nGenerated Template:\n");
-  console.log(output);
+  for (const file of files) {
+    console.log("Path:", file.filePath);
+    console.log(file.content);
+    console.log("----------");
+  }
 }

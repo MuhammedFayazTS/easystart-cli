@@ -7,12 +7,12 @@ const CONFIG_FILE = "cli.config.json";
 export function loadConfig(): CliConfig {
     const configPath = path.resolve(process.cwd(), CONFIG_FILE);
 
-    // 1. Check existence
+    // Check existence
     if (!fs.existsSync(configPath)) {
         throw new Error(`Config file not found: ${CONFIG_FILE}`);
     }
 
-    // 2. Read file
+    // Read file
     const raw = fs.readFileSync(configPath, "utf-8");
 
     let parsed: unknown;
@@ -23,7 +23,7 @@ export function loadConfig(): CliConfig {
         throw new Error("Invalid JSON in config file");
     }
 
-    // 3. Basic validation
+    // Basic validation
     validateConfig(parsed);
 
     return parsed as CliConfig;

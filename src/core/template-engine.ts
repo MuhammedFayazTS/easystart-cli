@@ -7,16 +7,16 @@ export function renderTemplate(
 ): string {
     const fullPath = path.resolve(process.cwd(), templatePath);
 
-    // 1. Check if template exists
+    // Check if template exists
     if (!fs.existsSync(fullPath)) {
         console.warn(`Template not found: ${templatePath}`);
         return "";
     }
 
-    // 2. Read template
+    // Read template
     const content = fs.readFileSync(fullPath, "utf-8");
 
-    // 3. Replace variables
+    // Replace variables
     return replaceVariables(content, variables);
 }
 
