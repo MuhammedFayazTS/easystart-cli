@@ -4,7 +4,15 @@ import { generateFiles } from "../core/generator";
 import { writeFiles } from "../core/file-writer";
 import { logger } from "../core/logger";
 
-export function featureCommand(inputName: string): void {
+interface FeatureOptions {
+  dryRun?: boolean;
+  force?: boolean;
+}
+
+export function featureCommand(
+  inputName: string,
+  options: FeatureOptions
+): void {
   const names = createNameVariants(inputName);
 
   logger.box(`Feature Generated: ${names.Name}`);
@@ -12,5 +20,15 @@ export function featureCommand(inputName: string): void {
   const config = loadConfig();
   const files = generateFiles(config, names);
 
-  writeFiles(files);
+  if (options.dryRun) {
+    logger.info("\n[Dry Run Mode] No files will be written\n");
+
+    for (const file of files) {
+      logger.info(`→ ${file.filePath}`);
+    }
+
+    return;
+  }
+
+  writeFiles(files, { force: options.force });
 }

@@ -13,6 +13,8 @@ program
 program
   .command("feature <name>")
   .description("Generate feature files")
+  .option("-d, --dry-run", "Preview without writing files")
+  .option("-f, --force", "Overwrite existing files")
   .action(featureCommand);
 
 program.parse();

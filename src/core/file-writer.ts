@@ -3,9 +3,17 @@ import path from "path";
 import { GeneratedFile } from "./generator";
 import { logger } from "./logger";
 
-export function writeFiles(files: GeneratedFile[]): void {
+interface WriteOptions {
+    force?: boolean;
+}
+
+export function writeFiles(
+    files: GeneratedFile[],
+    options: WriteOptions = {}
+): void {
     let created = 0;
     let skipped = 0;
+    let overwritten = 0;
 
     for (const file of files) {
         const fullPath = path.resolve(process.cwd(), file.filePath);
@@ -15,17 +23,26 @@ export function writeFiles(files: GeneratedFile[]): void {
             fs.mkdirSync(dir, { recursive: true });
         }
 
-        if (fs.existsSync(fullPath)) {
+        const exists = fs.existsSync(fullPath);
+
+        if (exists && !options.force) {
             logger.warn(`Skipped (exists): ${file.filePath}`);
             skipped++;
             continue;
         }
 
-        fs.writeFileSync(fullPath, file.content, "utf-8");
+        if (exists && options.force) {
+            logger.warn(`Overwritten: ${file.filePath}`);
+            overwritten++;
+        } else {
+            logger.success(`Created: ${file.filePath}`);
+            created++;
+        }
 
-        logger.success(`Created: ${file.filePath}`);
-        created++;
+        fs.writeFileSync(fullPath, file.content, "utf-8");
     }
 
-    logger.box(`Summary: ${created} created, ${skipped} skipped`);
+    logger.box(
+        `Summary: ${created} created, ${skipped} skipped, ${overwritten} overwritten`
+    );
 }
