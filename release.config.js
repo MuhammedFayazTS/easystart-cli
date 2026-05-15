@@ -1,5 +1,6 @@
 module.exports = {
   branches: ["main"],
+  repositoryUrl: "https://github.com/MuhammedFayazTS/easystart-cli.git",
 
   plugins: [
     "@semantic-release/commit-analyzer",
