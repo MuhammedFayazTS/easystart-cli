@@ -1,6 +1,6 @@
 {
   "name": "@fayaz_builds/easystart-cli",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "CLI to generate feature-based structure for Express apps",
   "scripts": {
     "build": "tsc",
