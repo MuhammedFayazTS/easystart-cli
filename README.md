@@ -44,6 +44,29 @@ npm install -g @fayaz/easystart-cli
 
 ---
 
+## Initialize Project
+
+Run the init command inside your project root:
+
+```bash
+easystart-cli init
+```
+
+This creates:
+
+```bash
+cli.config.json
+_templates/
+```
+
+Example structure:
+
+```bash
+project/
+  cli.config.json
+  _templates/
+```
+
 ## Usage
 
 ```bash

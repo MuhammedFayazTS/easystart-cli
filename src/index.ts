@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 import { featureCommand } from "./commands/feature";
+import { initCommand } from "./commands/init";
 
 const program = new Command();
 
@@ -9,6 +10,11 @@ program
   .name("cli")
   .description("Express Feature Generator CLI")
   .version("1.0.0");
+
+program
+  .command("init")
+  .description("Initialize EasyStart CLI config")
+  .action(initCommand);
 
 program
   .command("feature <name>")
