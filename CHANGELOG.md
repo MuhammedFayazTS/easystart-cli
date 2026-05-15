@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/MuhammedFayazTS/easystart-cli/compare/v1.0.0...v1.1.0) (2026-05-15)
+
+
+### Features
+
+* implement init command to scaffold cli configuration and template directory ([f1ac92e](https://github.com/MuhammedFayazTS/easystart-cli/commit/f1ac92e71b009b1fae7d90b984269393e1d15aac))
+
 # 1.0.0 (2026-05-15)
 
 
