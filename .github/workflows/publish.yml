@@ -33,16 +33,6 @@ jobs:
       - name: Build package
         run: npm run build
 
-      - name: Debug NPM Token
-        run: |
-          if [ -z "$NPM_TOKEN" ]; then
-            echo "NPM_TOKEN is EMPTY"
-          else
-            echo "NPM_TOKEN exists"
-          fi
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Run Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
