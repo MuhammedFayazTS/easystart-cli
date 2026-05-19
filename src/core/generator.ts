@@ -17,6 +17,11 @@ export function generateFiles(
     const variables = {
         name: names.name,
         Name: names.Name,
+        camelCase: names.camelCase,
+        PascalCase: names.PascalCase,
+        kebabCase: names.kebabCase,
+        snakeCase: names.snakeCase,
+        constantCase: names.constantCase,
     };
 
     for (const [layerName, layer] of Object.entries(config.layers)) {
